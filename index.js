@@ -3,6 +3,7 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 const Sse = require("json-sse")
 
+const database = require("./database")
 const factory = require("./router")
 
 const app = express()
