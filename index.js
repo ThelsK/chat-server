@@ -1,4 +1,5 @@
 const express = require("express")
+const bodyParser = require("body-parser")
 const Sse = require("json-sse")
 const factory = require("./router")
 
@@ -7,7 +8,10 @@ const stream = new Sse()
 const router = factory(stream)
 const port = process.env.PORT || 4000
 
-app.use(router)
+app.use(
+  bodyParser.json(),
+  router,
+)
 
 app.listen(port, () =>
   console.log(`Listening on :${port}`))

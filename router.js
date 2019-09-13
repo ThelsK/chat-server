@@ -7,7 +7,13 @@ const factory = stream => {
 
   router.get("/stream", (req, res) => {
     stream.updateInit(JSON.stringify(messages))
-    stream.init(req, res)
+    return stream.init(req, res)
+  })
+
+  router.post("/message", (req, res) => {
+    messages.push(req.body.text)
+    stream.send(JSON.stringify(messages))
+    return res.send(req.body.text)
   })
 
   return router
